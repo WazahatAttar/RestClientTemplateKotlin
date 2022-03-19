@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-kapt'
+    id 'kotlin-parcelize'
 }
 
 def apikeyPropertiesFile = rootProject.file("apikey.properties")
@@ -27,6 +28,10 @@ android {
         }
         buildConfigField("String", "CONSUMER_KEY", apikeyProperties['CONSUMER_KEY'])
         buildConfigField("String", "CONSUMER_SECRET", apikeyProperties['CONSUMER_SECRET'])
+    }
+
+    buildFeatures{
+        viewBinding true
     }
 
     // Related to https://github.com/scribejava/scribejava/issues/480
@@ -71,4 +76,5 @@ dependencies {
     implementation "androidx.room:room-runtime:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
     implementation 'com.facebook.stetho:stetho:1.5.1'
+    //implementation 'com.github.broakenmedia:CharCountTextView:v1.0'
 }
